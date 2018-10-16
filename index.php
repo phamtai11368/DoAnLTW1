@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 	<?php
- 	$per_page =5;
+ 	$per_page = 6;
  	$total =25;
     $url =$_SERVER['PHP_SELF'];
     $offset =2;
-    $per_page =5;
+    $per_page = 6;
  	if(isset($_GET['page']))
  	{
  		$page = $_GET['page'];
@@ -152,8 +152,8 @@
 									<td><?php echo $value['description']; ?></td>
 									<td><?php echo $value['price']; ?></td>
 									<td>
-										<a href="form.html" class="btn btn-success btn-mini">Edit</a>
-										<a href="#" class="btn btn-danger btn-mini">Delete</a>
+										<a href="Editform.php?id=<?php echo $value['ID'] ?>" class="btn btn-success btn-mini">Edit</a>
+										<a href="delete.php?id=<?php echo $value['ID']?>&image=<?php echo $value['image']?>" class="btn btn-danger btn-mini">Delete</a>
 									</td>
 								</tr>
 

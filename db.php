@@ -64,6 +64,7 @@ class Db{
         FROM `protypes`,`Product`,`manufactures`
         WHERE product.type_ID = protypes.type_ID
         AND product.manu_ID = manufactures.manu_ID 
+       	ORDER BY ID DESC
         LIMIT $first_link, $per_page"; 
       	$result = self::$conn->query($sql);
 		return $this->getData($result);   
@@ -102,4 +103,45 @@ class Db{
              $link = $link."<a href='$url?page=$total_links'> >> </a>";
               return $link; 
          } 
+        	public function getAllProTypes(){
+		$sql = "SELECT * FROM `protypes`";
+		$result = self::$conn->query($sql);
+		return $this->getData($result);
+	}
+
+	public function getAllManufacture(){
+		$sql = "SELECT * FROM `manufactures`";
+		$result = self::$conn->query($sql);
+		return $this->getData($result);
+	}
+	public function addProducts($name, $price, $image, $desc, $manu_ID, $type_ID){
+		$sql = "INSERT INTO `product`(`name`, `price`, `image`, `description`, `manu_ID`, `type_ID`)
+		VALUES ('$name',$price,'$image','$desc',$manu_ID,$type_ID)";
+		self::$conn->query($sql);
+	}
+	public function getTongSanPham(){
+		$sql = "SELECT * FROM `products`";
+		$result = self::$conn->query($sql);
+		return $result->num_rows;
+	}
+
+	public function deleteProduct($ID, $image){
+		$sql = "DELETE FROM `product` 
+		WHERE `ID` = $ID";
+		self::$conn->query($sql);
+		unlink("public/image/$image");
+	}
+	public function HTSP($ID){
+		$sql = "SELECT * FROM `product`
+		WHERE `ID` = $ID";
+		$result = self::$conn->query($sql);
+		return $this->getData($result);
+	}
+	public function CapNhap($name, $price, $image, $desc, $manu_ID, $type_ID, $id){
+		$sql = "UPDATE `product`
+		SET `name`='$name',`price`=$price,`image`='$image',`description`='$desc',`manu_ID`=$manu_ID,`type_ID`=$type_ID
+		WHERE `ID` = $id";
+		//var_dump($sql);
+		self::$conn->query($sql);
+	}
 }

@@ -16,16 +16,17 @@
 	}
 	?>
 	<!DOCTYPE html>
-	<html>
+	<html style="background: #9dff002e;">
 	<head>
 		<title>Login</title>
 	</head>
 	<body>
-	<form action="" method="get">
-		Username: <input type="text" name="user" value="<?php echo isset($_COOKIE['user'])?$_COOKIE['user']:"" ?>"><br><br>
-		Password: <input type="Password" name="pass"><br><br>
-		<input type="checkbox" name="remember">Remember
-		<input type="submit" name="" value="Submit">
+	<form action="" method="get" style="text-align: center; padding-top: 257px; margin-right: 67px;">
+		<h1 style="padding-left: 54px; font-family: cursive;">Nhóm 9</h1>
+		<a style="font-family: cursive;">Username: </a> <input type="text" name="user" value="<?php echo isset($_COOKIE['user'])?$_COOKIE['user']:"" ?>"><br><br>
+		<a style="font-family: cursive;"> Password: </a><input type="Password" name="pass"><br><br>
+		<input style="margin-left: 69px;" type="checkbox" name="remember">Remember
+		<input style="font-family: monospace; " type="submit" name="" value="Submit">
 	</form>
 	</body>
 	</html>

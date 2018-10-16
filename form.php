@@ -18,7 +18,7 @@
 
 <!--Header-part-->
 <div id="header">
-	<h1><a href="dashboard.html">Dashboard</a></h1>
+	<h1><a href="dashboard.php">Dashboard</a></h1>
 </div>
 <!--close-Header-part-->
 
@@ -31,7 +31,7 @@
 				<li class="divider"></li>
 				<li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
 				<li class="divider"></li>
-				<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+				<li><a href="login.php"><i class="icon-key"></i> Log Out</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
@@ -46,13 +46,13 @@
 			</ul>
 		</li>
 		<li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-		<li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+		<li class=""><a title="" href="login.php"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
 	</ul>
 </div>
 
 <!--start-top-serch-->
 <div id="search">
-	<form action="result.html" method="get">
+	<form action="result.php" method="get">
 	<input type="text" placeholder="Search here..." name="key"/>
 	<button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </form>
@@ -61,12 +61,12 @@
 
 <!--sidebar-menu-->
 
-<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
+<div id="sidebar"> <a href="" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
 	<ul>
-		<li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+		<li><a href="index.php"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
 
-		<li> <a href="form.html"><i class="icon icon-th-list"></i> <span>Add New Product</span></a></li>
-		<li> <a href="manufactures.html"><i class="icon icon-th-list"></i> <span>Manufactures</span></a></li>
+		<li> <a href="form.php"><i class="icon icon-th-list"></i> <span>Add New Product</span></a></li>
+		<li> <a href="manufactures.php"><i class="icon icon-th-list"></i> <span>Manufactures</span></a></li>
 
 
 
@@ -90,7 +90,7 @@
 					<div class="widget-content nopadding">
 
 						<!-- BEGIN USER FORM -->
-						<form action="#" method="post" class="form-horizontal" enctype="multipart/form-data">
+						<form action="xuly.php" method="post" class="form-horizontal" enctype="multipart/form-data">
 							<div class="control-group">
 								<label class="control-label">Name :</label>
 								<div class="controls">
@@ -101,11 +101,15 @@
 								<label class="control-label">Choose a product type :</label>
 								<div class="controls">
 									<select name="type_id">
-										<option value="4">Speaker</option>
-										<option value="3">Laptop</option>
-										<option value="2">Tablet</option>
-										<option value="1">Cellphone</option>
-
+										<?php
+											include "config.php";
+											include "db.php";
+											$db = new db;
+											$protypes = $db->getAllProTypes();
+											foreach($protypes as $value){
+											?>
+												<option value="<?php echo $value['type_ID']?>"><?php echo $value['type_name'] ?></option>
+											<?php } ?>
 									</select> *
 								</div>
 							</div>
@@ -113,11 +117,12 @@
 								<label class="control-label">Choose a manufacture :</label>
 								<div class="controls">
 									<select name="manu_id">
-										<option value="5">Oppo</option>
-										<option value="4">SamSung</option>
-										<option value="3">Sony</option>
-										<option value="2">Microsoft</option>
-										<option value="1">Apple</option>
+										<?php
+										$manu = $db->getAllManufacture();
+										foreach ($manu as $value) {
+											?>				
+											<option value="<?php echo $value['manu_ID'] ?>"><?php echo $value['manu_name']?></option>
+										<?php } ?>
 
 									</select> *
 								</div>
